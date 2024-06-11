@@ -28,12 +28,34 @@
 			$result = $this->db->query($sql);
 			$return = [];
 			
+			
 			while ($row = $result->fetchArray()) {
+				/** if the weather station, for some reason, can't measure the temperature,
+				 * it will return -9999.0. Therefore, we omit rows with a temperature of -9999.0.
+				 */
+				if ($row[0] == -9999.0) {
+					continue;
+				}
+				
 				if ($unit != NWWeatherTemperatures::Fahrenheit) {
 					$return[$row[1]] = ($row[0] - 30) / 2;
 				} else {
 					$return[$row[1]] = $row[0];
 				}
+			}
+			
+			return $return;
+		}
+		
+		public function getLatestRecords (int $limit = 5): array {
+			$sql = /** @lang SQL */ "SELECT * FROM tableWeatherData ORDER BY realtime DESC LIMIT $limit;";
+			$result = $this->db->query($sql);
+			$return = [];
+			
+			while ($row = $result->fetchArray()) {
+				$data = new NWWWundergroundJSONData();
+				$data->parseFromArray($row, useInputTime: true, fromDatabase: true);
+				$return[] = $data;
 			}
 			
 			return $return;

@@ -18,6 +18,9 @@
 	$temperatureDataPoints = $db->getTemperatureDataPoints();
 	$dashboard->assign("temperatureDataPoints", $temperatureDataPoints);
 	
+	$latestRecords = $db->getLatestRecords();
+	$dashboard->assign("latestRecords", $latestRecords);
+	
 	$head->render(true);
 	$dashboard->render(true);
 	$footer->render(true);

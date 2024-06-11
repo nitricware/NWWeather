@@ -35,7 +35,8 @@
 )
  */
 	class NWWWundergroundJSONData {
-		public readonly mixed $ID;
+		public readonly int $id;
+		public readonly string $stationID;
 		public readonly string $PASSWORD;
 		public readonly float $tempf;
 		public readonly int $humidity;
@@ -63,7 +64,7 @@
 		public readonly int $realtime;
 		public readonly int $rtfreq;
 		
-		public function parseFromArray(array $input, bool $useInputTime = false) {
+		public function parseFromArray(array $input, bool $useInputTime = false, $fromDatabase = false) {
 			$defaultValues = [
 				"ID" => "DefaultID",
 				"PASSWORD" => "DefaultPassword",
@@ -91,12 +92,20 @@
 				"softwaretype" => "DefaultSoftware",
 				"action" => "DefaultAction",
 				"realtime" => time(),
-				"rtfreq" => 0
+				"rtfreq" => 0,
+				"stationID" => "DefaultStationID"
 			];
 			
 			$input = array_merge($defaultValues,$input);
 			
-			$this->ID = $input["ID"];
+			if ($fromDatabase) {
+				$this->stationID = $input["stationID"];
+				$this->id = $input["id"];
+			} else {
+				$this->stationID = $input["ID"];
+				$this->id = 0;
+			}
+			
 			$this->PASSWORD = $input["PASSWORD"];
 			$this->tempf = $input["tempf"];
 			$this->humidity = $input["humidity"];

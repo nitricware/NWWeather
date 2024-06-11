@@ -24,7 +24,7 @@
 			$valueString = "";
 			
 			foreach ($data as $key => $value) {
-				if ($key != "ID" && $key != "PASSWORD") {
+				if ($key != "id" && $key != "PASSWORD") {
 					$keyArray[] = $key;
 					$valueArray[] = "'$value'";
 				}
@@ -48,6 +48,7 @@
 			$this->db = new SQLite3($this->dbPath);
 			$this->db->exec("CREATE TABLE IF NOT EXISTS tableWeatherData(
 							    id INTEGER PRIMARY KEY AUTOINCREMENT,
+							    stationID TEXT NOT NULL DEFAULT 'defaultStation'
    								tempf FLOAT NOT NULL DEFAULT '0',
 								humidity INT NOT NULL DEFAULT '0',
 								dewptf FLOAT NOT NULL DEFAULT '0',

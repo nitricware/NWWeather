@@ -2,6 +2,18 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
 
+<div class="dashboard-header">
+    <h1 class="left">NWWeather Dashboard</h1>
+    <div class="right">
+        19:00:00
+        <!-- display UTC time here -->
+    </div>
+</div>
+
+<div class="chart-container">
+    <canvas id="tempChart"></canvas>
+</div>
+
 <table>
     <thead>
         <tr>
@@ -15,12 +27,77 @@
             <td>{$dataPointsCount}</td>
         </tr>
     </tbody>
-
-    <canvas id="tempChart" width="800" height="400"></canvas>
-
 </table>
 
-
+<h2>Latest data points</h2>
+<div class="table-overflow">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>stationID</th>
+                <th>tempf</th>
+                <th>humidity</th>
+                <th>dewptf</th>
+                <th>windchillf</th>
+                <th>winddir</th>
+                <th>windspeedmph</th>
+                <th>windgustmph</th>
+                <th>rainin</th>
+                <th>dailyrainin</th>
+                <th>weeklyrainin</th>
+                <th>monthlyrainin</th>
+                <th>yearlyrainin</th>
+                <th>totalrainin</th>
+                <th>solarradiation</th>
+                <th>UV</th>
+                <th>indoortempf</th>
+                <th>indoorhumidity</th>
+                <th>absbaromin</th>
+                <th>baromin</th>
+                <th>lowbatt</th>
+                <th>dateutc</th>
+                <th>softwaretype</th>
+                <th>action</th>
+                <th>realtime</th>
+                <th>rtfreq</th>
+            </tr>
+        </thead>
+        <tbody>
+        {loop $record in $latestRecords}
+        <tr>
+            <td class="int">{$record->id}</td>
+            <td>{$record->stationID}</td>
+            <td class="int">{$record->tempf}</td>
+            <td class="int">{$record->humidity}</td>
+            <td class="int">{$record->dewptf}</td>
+            <td class="int">{$record->windchillf}</td>
+            <td class="int">{$record->winddir}</td>
+            <td class="int">{$record->windspeedmph}</td>
+            <td class="int">{$record->windgustmph}</td>
+            <td class="int">{$record->rainin}</td>
+            <td class="int">{$record->dailyrainin}</td>
+            <td class="int">{$record->weeklyrainin}</td>
+            <td class="int">{$record->monthlyrainin}</td>
+            <td class="int">{$record->yearlyrainin}</td>
+            <td class="int">{$record->totalrainin}</td>
+            <td class="int">{$record->solarradiation}</td>
+            <td class="int">{$record->UV}</td>
+            <td class="int">{$record->indoortempf}</td>
+            <td class="int">{$record->indoorhumidity}</td>
+            <td class="int">{$record->absbaromin}</td>
+            <td class="int">{$record->baromin}</td>
+            <td class="int">{$record->lowbatt}</td>
+            <td>{$record->dateutc}</td>
+            <td>{$record->softwaretype}</td>
+            <td>{$record->action}</td>
+            <td class="int">{$record->realtime}</td>
+            <td class="int">{$record->rtfreq}</td>
+        </tr>
+        {endloop}
+        </tbody>
+    </table>
+</div>
 
 <script src="sys/js/dashboard.js"></script>
 <script>

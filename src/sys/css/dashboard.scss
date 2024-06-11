@@ -1,0 +1,65 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-header {
+  background: linear-gradient(00deg, #ccc, #eee);
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  .left {
+    flex: 0 0 40%; /* Adjust the width as needed */
+    align-items: center;
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+      flex: 1;
+      align-items: center;
+    }
+  }
+}
+
+.table-overflow {
+  overflow: scroll;
+  display: block;
+}
+
+.chart-container {
+  #tempChart {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  td, th {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  thead {
+    background: #ccc;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background: #eee;
+  }
+
+  /** Special cell styles for types **/
+
+  tbody {
+    .int {
+      font-family: monospace;
+    }
+  }
+}

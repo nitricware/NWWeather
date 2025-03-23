@@ -12,7 +12,7 @@
 			$this->db = new SQLite3($this->dbPath);
 		}
 		public function countDatapoints() {
-			return $this->db->querySingle("SELECT COUNT(*) FROM tableWeatherdata");
+			return $this->db->querySingle("SELECT COUNT(*) FROM tableWeatherData");
 		}
 		
 		public function getTemperatureDataPoints(NWWeatherTemperatures $unit = NWWeatherTemperatures::Celsius, int $limit = 100, int $start = 0, int $end = 0): array {

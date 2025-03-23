@@ -9,6 +9,6 @@
 		public function handleData (NWWWundergroundJSONData $data): bool {
 			// TODO: Implement handleData() method.
 			// This class must transform the windy $_POST to InfluxDB format
-			die("not implemented");
+			return true;
 		}
 	}

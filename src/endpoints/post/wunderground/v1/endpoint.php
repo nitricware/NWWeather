@@ -1,11 +1,13 @@
 <?php
 	
+	use NitricWare\NWWRelaisInfluxDB;
 	use NitricWare\NWWRelaisLocalCopy;
 	use NitricWare\NWWRelaisSQLite;
 	use NitricWare\NWWRelaisWindy;
 	use NitricWare\NWWWundergroundJSONData;
 	
 	include "../../../../sys/autoloader.php";
+	include "../../../../sys/var/settings.php";
 
 	// TODO: Loop through NWWRelais classes
 	// $x = new $className()
@@ -28,4 +30,5 @@
 	$windy = new NWWRelaisWindy();
 	$windy->handleData($data);
 	
-	
+	$influxDB = new NWWRelaisInfluxDB();
+	$influxDB->handleData($data);

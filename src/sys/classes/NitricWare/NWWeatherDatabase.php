@@ -5,24 +5,29 @@
 	use SQLite3;
 	
 	class NWWeatherDatabase {
-		public $dbPath = ROOT_DIR."/db/data.sqlite";
+		public $dbPath = ROOT_DIR . "/db/data.sqlite";
 		public SQLite3|null $db = null;
 		
 		public function __construct () {
 			$this->db = new SQLite3($this->dbPath);
 		}
-		public function countDatapoints() {
+		
+		public function countDatapoints () {
 			return $this->db->querySingle("SELECT COUNT(*) FROM tableWeatherData");
 		}
 		
-		public function getTemperatureDataPoints(NWWeatherTemperatures $unit = NWWeatherTemperatures::Celsius, int $limit = 100, int $start = 0, int $end = 0): array {
-			$sql = /** @lang SQL */ "SELECT tempf, dateutc FROM tableWeatherData WHERE realtime > $start ";
-			if ($end >0) {
-				$sql .= /** @lang SQL */ "AND realtime <= $end ";
+		public function getTemperatureDataPoints (NWWeatherTemperatures $unit = NWWeatherTemperatures::Celsius, int $limit = 100, int $start = 0, int $end = 0): array {
+			$sql = /** @lang SQL */
+				"SELECT tempf, dateutc FROM tableWeatherData WHERE realtime > $start ";
+			if ($end > 0) {
+				$sql .= /** @lang SQL */
+					"AND realtime <= $end ";
 			}
-			$sql .= /** @lang SQL */ "ORDER BY realtime DESC ";
+			$sql .= /** @lang SQL */
+				"ORDER BY realtime DESC ";
 			if ($limit > 0) {
-				$sql .= /** @lang SQL */ "LIMIT $limit ";
+				$sql .= /** @lang SQL */
+					"LIMIT $limit ";
 			}
 			$sql .= ";";
 			$result = $this->db->query($sql);
@@ -48,7 +53,8 @@
 		}
 		
 		public function getLatestRecords (int $limit = 5): array {
-			$sql = /** @lang SQL */ "SELECT * FROM tableWeatherData ORDER BY realtime DESC LIMIT $limit;";
+			$sql = /** @lang SQL */
+				"SELECT * FROM tableWeatherData ORDER BY realtime DESC LIMIT $limit;";
 			$result = $this->db->query($sql);
 			$return = [];
 			

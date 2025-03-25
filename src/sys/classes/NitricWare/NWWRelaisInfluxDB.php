@@ -8,12 +8,11 @@
 		
 		public function handleData (NWWWundergroundJSONData $data): bool {
 			$influxDbRequest = [];
-			$influxDbRequest['url'] = NWWeatherSettings::$influxDBURL & "bucket=" & NWWeatherSettings::$influxDBBucket;
+			$influxDbRequest['url'] = NWWeatherSettings::$influxDBURL . "bucket=" . NWWeatherSettings::$influxDBBucket . "&precision=s";
 			$influxDbRequest['headers'] = [
 				'Content-Type' => 'text/plain; charset=utf-8'
 			];
-			$influxDbRequest['body'] = '';
-			$influxDbRequest['body'] .= "weather,location=$data->stationID ";
+			$influxDbRequest['body'] = "weather,location=$data->stationID ";
 			$fields = [];
 			
 			// Extract fields from the NWWundergroundJSONData object

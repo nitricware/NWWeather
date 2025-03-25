@@ -99,6 +99,25 @@
     </table>
 </div>
 
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Date UTC</td>
+            <td>Caller</td>
+            <td>Message</td>
+        </tr>
+        {loop $logEntry in $latestLogEntries}
+        <tr>
+            <td>{$logEntry->id}</td>
+            <td>{$logEntry->dateutc}</td>
+            <td>{$logEntry->caller}</td>
+            <td>{$logEntry->message}</td>
+        </tr>
+        {endloop}
+    </thead>
+</table>
+
 <script src="sys/js/dashboard.js"></script>
 <script>
     var tempKeys = []

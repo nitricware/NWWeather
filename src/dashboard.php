@@ -2,6 +2,7 @@
 	
 	use NitricWare\NWWeatherDatabase;
 	use NitricWare\NWWeatherTemperatures;
+	use NitricWare\NWWLogDatabase;
 	use NitricWare\Tonic;
 	
 	require "sys/autoloader.php";
@@ -12,6 +13,7 @@
 	$dashboard = new Tonic("sys/views/dashboard.html");
 	
 	$db = new NWWeatherDatabase();
+	$ldb = new NWWLogDatabase();
 	
 	$dashboard->assign("dataPointsCount", $db->countDatapoints());
 	
@@ -20,6 +22,9 @@
 	
 	$latestRecords = $db->getLatestRecords();
 	$dashboard->assign("latestRecords", $latestRecords);
+	
+	$latestLogEntries = $ldb->getLogEntries();
+	$dashboard->assign("latestLogEntries", $latestLogEntries);
 	
 	$head->render(true);
 	$dashboard->render(true);

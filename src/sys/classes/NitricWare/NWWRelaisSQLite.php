@@ -38,12 +38,14 @@
 			return true;
 		}
 		
+		// TODO: This should not be here
 		public function log(string $caller, string $message) {
 			$dateutc = gmdate("d M Y H:i:s", time());
 			$query = "INSERT INTO tableLog ('dateutc', 'caller', 'message') VALUES ('$dateutc', '$caller', '$message')";
 			$this->db->exec($query);
 		}
 		
+		// TODO: This should not be here
 		private function createDatabase() {
 			$this->db = new SQLite3($this->dbPath);
 			$this->db->exec("CREATE TABLE IF NOT EXISTS tableWeatherData(

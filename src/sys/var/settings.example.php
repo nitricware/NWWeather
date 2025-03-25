@@ -5,5 +5,8 @@
 	// 2, rename class to NWWeatherSettings
 	class NWWeatherSettingsExample {
 		public static string $relaisURL = "https://relais.url";
-		public static string $windyAPIKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6OTUxODAxOSwiaWF0IjoxNjkxNTA5MTQ5fQ.JJBVr-7V2L0LtDPrlbPfkYOlj_DDfc0MHqt7p_XgZkY";
+		public static string $windyAPIKey = "";
+		public static array $relaisList = [ "NitricWare\NWWRelaisSQLite", "NitricWare\NWWRelaisInfluxDB" ];
+		public static string $influxDBURL = "http://localhost:8086/api/v2/write?";
+		public static string $influxDBBucket = "weatherdb";
 	}

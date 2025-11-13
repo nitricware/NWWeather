@@ -1,5 +1,6 @@
 <?php
 	
+	use NitricWare\NWWeatherSettings;
 	use NitricWare\NWWRelaisInfluxDB;
 	use NitricWare\NWWRelaisLocalCopy;
 	use NitricWare\NWWRelaisSQLite;
@@ -16,7 +17,7 @@
 	$data = new NWWWundergroundJSONData();
 	$data->parseFromArray($_GET);
 	
-	foreach (\NitricWare\NWWeatherSettings::$relaisList as $relais) {
+	foreach (NWWeatherSettings::$relaisList as $relais) {
 		$relaisClass = new $relais();
 		$relaisClass->handleData($data);
 	}

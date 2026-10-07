@@ -11,7 +11,7 @@ class NWWRelaisWindy implements INWWRelais
     public function handleData(NWWWundergroundJSONData $data): bool
     {
         $payLoad = [
-            "id" => $data->id,
+            "id" => $data->stationID,
             "PASSWORD" => $data->PASSWORD,
             "windspeedmph" => $data->windspeedmph,
             "windgustmph" => $data->windgustmph,
